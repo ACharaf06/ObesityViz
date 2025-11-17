@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facteurs socio-économiques • Obesity Insights</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+      .chart-section {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      #income-viz svg,
+      #education-viz svg,
+      #race-viz svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .chart-note {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 0.5rem;
+      }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Obesity Insights</div>
+        <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="map.html">Carte</a></li>
+            <li><a href="activity.html">Activité & profil</a></li>
+            <li><a href="demographics.html">Démographie</a></li>
+            <li><a class="active" href="socioeconomic.html">Socio-économique</a></li>
+            <li><a href="about.html">À propos</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="content">
+
+    <h1>Facteurs socio-économiques et obésité</h1>
+
+    <p class="viz-type">
+        Types de visualisation : 
+        <span>BARRES HORIZONTALES &amp; LOLLIPOP CHARTS</span>
+    </p>
+
+    <p>
+        L'obésité ne touche pas uniformément toutes les catégories socio-économiques.
+        Cette page explore comment les taux d'obésité varient selon le <strong>revenu</strong>,
+        le <strong>niveau d'éducation</strong> et l'<strong>origine ethnique</strong>.
+        Ces visualisations révèlent des disparités importantes qui reflètent
+        des inégalités d'accès à une alimentation saine et à des opportunités
+        d'activité physique.
+    </p>
+
+    <!-- Sélecteurs -->
+    <div class="controls">
+      <label for="yearSelect">Année :</label>
+      <select id="yearSelect"></select>
+
+      <label for="stateSelect">Zone :</label>
+      <select id="stateSelect"></select>
+
+      <span class="controls-hint">
+        Choisissez une année et une zone (États-Unis ou un État spécifique)
+        pour comparer les taux d'obésité selon différents facteurs socio-économiques.
+      </span>
+    </div>
+
+    <!-- Viz Revenu -->
+    <section class="chart-section">
+        <h2>Obésité selon le revenu annuel du ménage (%)</h2>
+        <div id="income-viz"></div>
+        <p class="chart-note">
+          Les tranches de revenu montrent généralement une relation inverse avec l'obésité :
+          les ménages à revenu plus élevé tendent à avoir des taux d'obésité plus faibles.
+          Cette tendance reflète des différences d'accès aux aliments sains et aux
+          installations sportives.
+        </p>
+    </section>
+
+    <!-- Viz Éducation -->
+    <section class="chart-section">
+        <h2>Obésité selon le niveau d'éducation (%)</h2>
+        <div id="education-viz"></div>
+        <p class="chart-note">
+          Le niveau d'éducation est fortement corrélé avec les taux d'obésité.
+          Les adultes diplômés de l'université présentent généralement des taux
+          d'obésité significativement plus bas que ceux ayant un niveau d'études
+          inférieur au lycée.
+        </p>
+    </section>
+
+    <!-- Viz Race/Ethnicité -->
+    <section class="chart-section">
+        <h2>Obésité selon l'origine ethnique (%)</h2>
+        <div id="race-viz"></div>
+        <p class="chart-note">
+          Les disparités raciales et ethniques dans les taux d'obésité sont importantes
+          et persistent dans le temps. Les adultes noirs non-hispaniques et hispaniques
+          présentent généralement des taux d'obésité plus élevés que les adultes blancs
+          non-hispaniques, reflétant des inégalités structurelles en matière de santé.
+        </p>
+    </section>
+
+    <!-- Interprétation -->
+    <section class="map-explanation">
+        <h2>Interprétation des résultats</h2>
+
+        <p>
+            Ces trois visualisations révèlent que l'obésité est étroitement liée
+            aux conditions socio-économiques. Les données montrent systématiquement
+            que les populations les plus défavorisées économiquement et socialement
+            sont celles qui présentent les taux d'obésité les plus élevés.
+        </p>
+
+        <h3>1. Le gradient de revenu</h3>
+        <p>
+            Le jeu de données fournit des taux d'obésité par tranche de revenu
+            (<em>StratificationCategory1 = "Income"</em>). On observe généralement
+            une diminution progressive du taux d'obésité à mesure que le revenu
+            augmente. Les ménages gagnant moins de 15 000 $ par an peuvent avoir
+            des taux d'obésité 50% plus élevés que ceux gagnant plus de 75 000 $.
+        </p>
+
+        <h3>2. L'impact de l'éducation</h3>
+        <p>
+            Pour le niveau d'éducation (<em>StratificationCategory1 = "Education"</em>),
+            les barres horizontales permettent de comparer facilement les différents
+            niveaux. L'éducation joue un rôle protecteur : elle est associée à une
+            meilleure connaissance nutritionnelle et à un meilleur accès aux ressources
+            de santé.
+        </p>
+
+        <h3>3. Les disparités ethniques</h3>
+        <p>
+            Pour l'origine ethnique (<em>StratificationCategory1 = "Race/Ethnicity"</em>),
+            les différences observées ne reflètent pas des facteurs biologiques mais
+            plutôt l'impact cumulatif d'inégalités sociales, économiques et d'accès
+            aux soins. Ces disparités sont présentes quel que soit l'État ou l'année
+            analysés.
+        </p>
+
+        <h3>Pourquoi ces choix de graphiques ?</h3>
+        <p>
+            Les barres horizontales et lollipop charts permettent de comparer
+            facilement plusieurs catégories tout en accommodant des libellés textuels
+            parfois longs. Ces formats visuels mettent clairement en évidence les
+            écarts entre groupes socio-économiques, révélant que l'obésité est
+            autant une question de santé publique que de justice sociale.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2025 – Projet universitaire de visualisation de données</p>
+</footer>
+
+<script src="../js/socioeconomic.js"></script>
+
+</body>
+</html>
+

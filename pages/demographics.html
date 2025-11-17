@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Démographie • Obesity Insights</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+      #age-viz svg,
+      #gender-viz svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .chart-note {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 0.5rem;
+      }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Obesity Insights</div>
+        <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="map.html">Carte</a></li>
+            <li><a href="activity.html">Activité & profil</a></li>
+            <li><a class="active" href="demographics.html">Démographie</a></li>
+            <li><a href="socioeconomic.html">Socio-économique</a></li>
+            <li><a href="about.html">À propos</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="content">
+
+    <h1>Analyse démographique de l'obésité aux États-Unis</h1>
+
+    <p class="viz-type">
+        Type de page : <span>DÉMOGRAPHIE</span>
+    </p>
+
+    <p class="viz-type">
+        Types de visualisation : 
+        <span>LOLLIPOP CHART &amp; BARRES DIVERGENTES</span>
+    </p>
+
+    <p>
+        Cette page explore les différences d'obésité selon l’âge et le genre,
+        à partir des données issues d’enquêtes de santé menées chaque année
+        auprès d’adultes américains. Par défaut, les graphiques montrent les 
+        <strong>données nationales</strong>, mais vous pouvez filtrer sur un
+        État précis.
+    </p>
+
+    <!-- Sélecteurs -->
+    <div class="controls">
+      <label for="yearSelect">Année :</label>
+      <select id="yearSelect"></select>
+
+      <label for="stateSelect">Zone :</label>
+      <select id="stateSelect"></select>
+
+      <span class="controls-hint">
+        Choisissez une année et, si vous le souhaitez, un État pour comparer son profil
+        au niveau national.
+      </span>
+    </div>
+
+    <!-- Viz Age -->
+    <section class="chart-container">
+        <h2>Obésité selon l’âge (%)</h2>
+        <div id="age-viz"></div>
+        <p class="chart-note">
+          Chaque “sucette” représente une tranche d’âge. Plus le point est
+          éloigné vers la droite, plus la proportion d’adultes obèses est élevée
+          dans cette tranche pour la zone sélectionnée (États-Unis ou État choisi).
+        </p>
+    </section>
+
+    <!-- Viz Genre -->
+    <section class="chart-container">
+        <h2>Obésité selon le genre (%)</h2>
+        <div id="gender-viz"></div>
+        <p class="chart-note">
+          La ligne verticale au centre représente le point de référence.
+          Les barres vers la droite indiquent un taux plus élevé chez les femmes,
+          celles vers la gauche chez les hommes, pour la zone et l’année sélectionnées.
+        </p>
+    </section>
+
+    <!-- Interprétation -->
+    <section class="map-explanation">
+        <h2>Interprétation des résultats</h2>
+
+        <p>
+            Les visualisations utilisent soit les données nationales (lignes où
+            <strong>LocationAbbr = US</strong>), soit les données d’un État donné
+            lorsque vous le sélectionnez. Elles comparent ainsi la répartition de
+            l’obésité selon l’âge et le genre dans la population adulte.
+        </p>
+
+        <h3>1. Lollipop chart par âge</h3>
+        <p>
+            Le jeu de données fournit des pourcentages par tranche d’âge 
+            (<em>StratificationCategory1 = "Age (years)"</em>). La lollipop chart
+            met en évidence la progression du taux d’obésité au fil de ces tranches.
+            On observe souvent une hausse après 25 ans, puis une stabilisation chez
+            les plus de 55 ans. Les points facilitent la comparaison précise entre
+            classes d’âge, tout en gardant un style visuel épuré.
+        </p>
+
+        <h3>2. Barres divergentes par genre</h3>
+        <p>
+            Pour le genre (<em>StratificationCategory1 = "Sex"</em>), les barres
+            divergentes permettent de comparer directement hommes et femmes autour
+            d’un axe commun. Ce format met en valeur l’<strong>écart relatif</strong>
+            entre les deux groupes, sans exagérer les différences lorsque les taux
+            sont proches.
+        </p>
+
+        <h3>Pourquoi ces choix de graphiques&nbsp;?</h3>
+        <p>
+            Par rapport à des barres classiques, la lollipop chart et les barres
+            divergentes rendent les différences démographiques plus lisibles tout
+            en restant visuellement modernes. Elles complètent les cartes et les
+            profils radars des autres pages en se concentrant sur la structure
+            par âge et par genre de la population obèse.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2025 – Projet universitaire de visualisation de données</p>
+</footer>
+
+<script src="../js/demographics.js"></script>
+
+</body>
+</html>

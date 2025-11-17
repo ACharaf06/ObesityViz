@@ -1,0 +1,378 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: #2B2B2B;
+  background-color: #F6F8FA;
+}
+
+/* ===========================
+   NAVBAR
+   =========================== */
+
+header {
+  background-color: #0B1E39;
+  padding: 1rem 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  color: #E6EEF7;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.navbar ul li a:hover {
+  color: #E63946;
+}
+
+.navbar ul li a.active {
+  border-bottom: 2px solid #E63946;
+  padding-bottom: 0.2rem;
+}
+
+/* ===========================
+   HERO (page d'accueil)
+   =========================== */
+
+.hero {
+  background: linear-gradient(to bottom right, #0B1E39, #264160);
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* ===========================
+   SECTIONS INTRO & TEAM
+   =========================== */
+
+.intro {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.intro h2 {
+  font-size: 1.8rem;
+}
+
+.intro ul {
+  line-height: 1.8;
+}
+
+.team {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.team ul {
+  line-height: 1.8;
+}
+
+/* ===========================
+   CARDS (accueil)
+   =========================== */
+
+.cards {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  transition: 0.3s;
+  text-decoration: none;
+  color: #2B2B2B;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-left: 5px solid #E63946;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: #0B1E39;
+  color: #E6EEF7;
+  margin-top: 3rem;
+}
+
+/* ===========================
+   CONTENU STANDARD DES PAGES
+   =========================== */
+
+.content {
+  max-width: 1200px;
+  margin: 2.5rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.content p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.viz-type {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.viz-type span {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #E63946;
+}
+
+/* Texte listant les années disponibles */
+
+.years-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: -0.3rem;
+  margin-bottom: 1.2rem;
+}
+
+/* ===========================
+   CONTROLES (carte & graphiques)
+   =========================== */
+
+.map-controls,
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.map-controls button {
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #E63946;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.map-controls button:hover {
+  opacity: 0.9;
+}
+
+#yearSlider {
+  flex: 1;
+}
+
+#yearLabel {
+  min-width: 3rem;
+  font-weight: 600;
+}
+
+.controls label {
+  font-size: 0.95rem;
+}
+
+.controls select {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+/* ===========================
+   CONTENEURS : CARTE & GRAPHIQUES
+   =========================== */
+
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+
+/* la carte prend toute la largeur disponible dans la colonne */
+#map {
+  width: 100%;
+  margin: 0 0 2.5rem 0;
+}
+
+#map svg {
+  width: 100%;
+  height: auto;
+  min-height: 430px; /* pour éviter une mini-carte */
+  display: block;
+}
+
+.chart-container {
+  max-width: 975px;
+  margin: 1.5rem auto 2.5rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  padding: 1.5rem;
+}
+
+/* ===========================
+   LAYOUT CARTE + PANNEAU INFO
+   =========================== */
+
+#stateInfo {
+  background: #fff;
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  font-size: 0.95rem;
+}
+
+#stateInfo h2 {
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+#stateInfo p {
+  margin: 0.2rem 0;
+}
+
+.state-comment {
+  margin-top: 0.8rem;
+  color: #555;
+}
+
+/* surbrillance de l’État sélectionné sur la carte */
+.state-highlight {
+  stroke: #222;
+  stroke-width: 2;
+}
+
+/* ===========================
+   SECTION D’EXPLICATION DE LA CARTE
+   =========================== */
+
+.map-explanation {
+  margin-top: 2.5rem;
+  max-width: 900px;
+}
+
+/* ===========================
+   TOOLTIP D3 GÉNÉRIQUE
+   =========================== */
+
+.tooltip {
+  position: absolute;
+  padding: 6px 10px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 900px) {
+  .map-layout {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hero {
+    padding: 4rem 1.5rem;
+  }
+}
+
+/* Libellés abrégés des États sur la carte */
+.state-label {
+  font-size: 9px;
+  fill: #222;
+  text-anchor: middle;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+/* ===========================
+   RADAR – CONTENEUR
+   =========================== */
+
+/* On élargit et on centre la zone du radar pour que rien ne déborde */
+#radar {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

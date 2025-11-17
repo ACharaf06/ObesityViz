@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte de l’obésité par État</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- D3 + TopoJSON -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Obesity Insights</div>
+    <ul>
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a class="active" href="map.html">Carte</a></li>
+      <li><a href="activity.html">Activité & profil</a></li>
+      <li><a href="demographics.html">Démographie</a></li>
+      <li><a href="socioeconomic.html">Socio-économique</a></li>
+      <li><a href="about.html">À propos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="content">
+  <h1>Taux d’obésité par État</h1>
+  <p class="viz-type">Type de visualisation : <span>CARTE CHOROPLÈTHE</span></p>
+  <p>
+    Cette carte montre la proportion d’adultes en situation d’obésité dans chaque État américain.
+    Utilisez le curseur temporel pour observer l’évolution au fil des années, puis cliquez sur un État
+    pour afficher des informations détaillées.
+  </p>
+
+  <div class="map-controls">
+    <button id="playBtn">▶️ Lancer</button>
+    <label for="yearSlider">Année :</label>
+    <input type="range" id="yearSlider" min="2000" max="2025" step="1">
+    <span id="yearLabel"></span>
+  </div>
+
+  <!-- Carte + panneau d’information -->
+  <div class="map-layout">
+    <div id="map"></div>
+
+    <aside id="stateInfo">
+      <h2 id="stateTitle">Aucun État sélectionné</h2>
+      <p id="stateYear">Année : <span>-</span></p>
+      <p id="stateValue">Taux d’obésité : <span>-</span></p>
+      <p id="stateComment" class="state-comment">
+        Cliquez sur un État de la carte pour afficher son taux d’obésité
+        et une interprétation rapide.
+      </p>
+    </aside>
+  </div>
+
+  <!-- Interprétation de la carte + justification -->
+  <section class="map-explanation">
+    <h2>Comment interpréter cette carte&nbsp;?</h2>
+    <p>
+      Lorsque vous faites défiler les années avec le curseur ou que vous lancez l’animation,
+      la couleur de chaque État se met à jour automatiquement. Les teintes vont du
+      <strong>jaune clair</strong> au <strong>rouge foncé</strong>&nbsp;: plus la couleur est sombre,
+      plus la part d’adultes en situation d’obésité est élevée dans cet État pour l’année affichée.
+    </p>
+    <p>
+      Observer l’évolution dans le temps permet de voir comment l’obésité progresse ou recule
+      selon les régions. Certains États restent relativement clairs (taux plus faibles), tandis
+      que d’autres s’assombrissent au fil des années, indiquant une augmentation de la prévalence.
+      En cliquant sur un État, le panneau à droite résume le taux exact et indique si celui-ci est
+      plutôt inférieur, proche ou supérieur à la moyenne nationale.
+    </p>
+    <p>
+      L’échelle située en bas de la carte rappelle les valeurs correspondantes aux couleurs
+      (en pourcentage d’adultes obèses). Elle permet de comparer visuellement les États entre eux
+      et de repérer rapidement les zones les plus concernées par l’obésité à une année donnée.
+    </p>
+
+    <h3>Pourquoi une carte choroplèthe&nbsp;?</h3>
+    <p>
+      Le jeu de données fournit des taux d’obésité par État et par année. Une carte choroplèthe
+      est le choix naturel pour ce type de données géographiques&nbsp;: elle associe chaque valeur
+      à un territoire et met en évidence des <strong>patterns régionaux</strong>, comme les États
+      du Sud souvent plus touchés. L’animation temporelle permet de suivre la diffusion ou la
+      stabilisation de l’obésité dans l’espace.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 – Projet universitaire de visualisation de données</p>
+</footer>
+
+<script src="../js/map.js"></script>
+</body>
+</html>

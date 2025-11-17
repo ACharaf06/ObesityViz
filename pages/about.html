@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos • Obesity Insights</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">Obesity Insights</div>
+    <ul>
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="map.html">Carte</a></li>
+      <li><a href="activity.html">Activité & profil</a></li>
+      <li><a href="demographics.html">Démographie</a></li>
+      <li><a href="socioeconomic.html">Socio-économique</a></li>
+      <li><a class="active" href="about.html">À propos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="content">
+  <h1>À propos du projet et des données</h1>
+
+  <section class="intro">
+    <h2>Objectif du projet</h2>
+    <p>
+      <strong>Obesity Insights</strong> est un tableau de bord interactif réalisé dans
+      le cadre d’un projet universitaire de visualisation de données. L’objectif est
+      d’explorer l’obésité chez les adultes aux États-Unis à partir d’un jeu de données
+      réel, en combinant plusieurs points de vue&nbsp;:
+    </p>
+    <ul>
+      <li>l'<strong>évolution géographique</strong> de l'obésité (carte par État),</li>
+      <li>les <strong>comportements de santé</strong> associés (alimentation, activité),</li>
+      <li>la <strong>dimension démographique</strong> (âge, genre),</li>
+      <li>les <strong>facteurs socio-économiques</strong> (revenu, éducation, origine ethnique).</li>
+    </ul>
+    <p>
+      Le site a été conçu pour être à la fois visuel, interactif et pédagogique&nbsp;:
+      chaque page explique le choix des graphiques et la manière d’interpréter les résultats.
+    </p>
+  </section>
+
+  <section class="intro">
+    <h2>Structure du jeu de données</h2>
+    <p>
+      Le jeu de données provient d’enquêtes de santé répétées chaque année.
+      Chaque ligne représente un <strong>groupe de personnes</strong> (par exemple :
+      “Adultes de 35–44 ans, femmes, dans l’État de l’Alabama, en 2011”) et donne
+      la proportion d’adultes répondant à une question précise.
+    </p>
+    <p>Les principaux champs utilisés dans ce projet sont&nbsp;:</p>
+
+    <ul>
+      <li>
+        <strong>YearStart / YearEnd</strong> : année de référence des données.
+        Dans les visualisations, nous utilisons surtout <code>YearStart</code>.
+      </li>
+      <li>
+        <strong>LocationAbbr</strong> : abréviation de la zone géographique
+        (par exemple <code>AL</code> pour l’Alabama, <code>US</code> pour l’agrégation nationale).
+      </li>
+      <li>
+        <strong>LocationDesc</strong> : nom complet de l’État ou de la zone
+        (par exemple “Alabama”, “United States”).
+      </li>
+      <li>
+        <strong>Question</strong> : texte complet de la question posée,
+        par exemple <em>“Percent of adults aged 18 years and older who have obesity”</em>.
+        Le site se concentre principalement sur cette question et quelques autres
+        liées à l’alimentation et à l’activité physique.
+      </li>
+      <li>
+        <strong>QuestionID</strong> : identifiant court de la question
+        (par exemple <code>Q036</code> pour l’obésité, <code>Q018</code> pour la consommation
+        de fruits, <code>Q019</code> pour les légumes, <code>Q047</code> pour l’activité de loisir).
+        Cet identifiant est utilisé dans le code pour filtrer les indicateurs
+        pertinents pour chaque visualisation.
+      </li>
+      <li>
+        <strong>Data_Value</strong> : valeur numérique principale du jeu de données.
+        Il s’agit d’un <strong>pourcentage</strong>&nbsp;: la proportion d’adultes du groupe
+        concerné qui présentent la caractéristique mesurée (par exemple “sont obèses”,
+        “ne mangent pas de fruits tous les jours”, “n’ont aucune activité de loisir”).
+      </li>
+      <li>
+        <strong>StratificationCategory1</strong> et <strong>Stratification1</strong> :
+        ces deux champs décrivent la stratification utilisée pour la ligne.
+        Par exemple :
+        <ul>
+          <li><code>StratificationCategory1 = "Age (years)"</code>  
+              <code>Stratification1 = "35 - 44"</code></li>
+          <li><code>StratificationCategory1 = "Sex"</code>  
+              <code>Stratification1 = "Male" ou "Female"</code></li>
+          <li><code>StratificationCategory1 = "Education"</code> ou <code>"Income"</code></li>
+        </ul>
+        Dans ce projet, nous utilisons surtout ces champs pour créer les comparaisons
+        par <strong>âge</strong> et par <strong>genre</strong>, ou pour filtrer les données
+        sur le total (“Total / Total”).
+      </li>
+      <li>
+        <strong>GeoLocation</strong> : coordonnées géographiques (latitude, longitude)
+        de la zone. Ce champ pourrait servir à d’autres types de cartes, mais pour la
+        carte principale nous utilisons un fond de carte standard des États-Unis.
+      </li>
+    </ul>
+  </section>
+
+  <section class="intro">
+    <h2>Comment les visualisations utilisent ces champs&nbsp;?</h2>
+    <ul>
+      <li>
+        <strong>Carte choroplèthe</strong> : agrège les lignes par 
+        <code>(YearStart, LocationDesc)</code> pour un indicateur unique
+        (<code>QuestionID = Q036</code>, obésité), puis colorie chaque État
+        en fonction de <code>Data_Value</code>.
+      </li>
+      <li>
+        <strong>Radar activité / alimentation</strong> : pour chaque
+        <code>(État, année)</code>, récupère plusieurs questions 
+        (<code>Q036</code>, <code>Q018</code>, <code>Q019</code>, <code>Q047</code>)
+        et construit un profil combiné à partir de leurs pourcentages.
+      </li>
+      <li>
+        <strong>Démographie</strong> : utilise les mêmes indicateurs d'obésité
+        mais en exploitant <code>StratificationCategory1</code> = "Age (years)"
+        ou "Sex", afin de comparer les tranches d'âge et les genres au niveau
+        national ou pour un État particulier.
+      </li>
+      <li>
+        <strong>Facteurs socio-économiques</strong> : explore les disparités
+        en utilisant <code>StratificationCategory1</code> = "Income", "Education",
+        ou "Race/Ethnicity", révélant comment l'obésité est liée aux conditions
+        sociales et économiques à travers des barres horizontales et des lollipop charts.
+      </li>
+    </ul>
+    <p>
+      L’ensemble de ces choix permet de montrer que derrière un taux d’obésité
+      global se cachent des <strong>profils très différents</strong> selon
+      les territoires, les comportements de santé et les caractéristiques
+      démographiques.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 – Projet universitaire de visualisation de données</p>
+</footer>
+
+</body>
+</html>

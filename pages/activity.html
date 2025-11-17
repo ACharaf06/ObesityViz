@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil activité, alimentation et obésité</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Obesity Insights</div>
+    <ul>
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="map.html">Carte</a></li>
+      <li><a class="active" href="activity.html">Activité & profil</a></li>
+      <li><a href="demographics.html">Démographie</a></li>
+      <li><a href="socioeconomic.html">Socio-économique</a></li>
+      <li><a href="about.html">À propos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="content">
+  <h1>Profil activité, alimentation et obésité par État</h1>
+  <p class="viz-type">Type de visualisation : <span>DIAGRAMME RADAR</span></p>
+
+  <p>
+    L’obésité ne se résume pas à un seul chiffre : elle est liée à des comportements
+    quotidiens, comme l’activité physique et l’alimentation. Ce diagramme radar permet de
+    visualiser, pour un État donné, plusieurs indicateurs en même temps afin de dresser un
+    <strong>profil global de santé</strong>.
+  </p>
+
+  <div class="controls">
+    <label for="stateSelect">État :</label>
+    <select id="stateSelect"></select>
+
+    <label for="yearSelect">Année :</label>
+    <select id="yearSelect"></select>
+
+    <span class="controls-hint">
+      Choisissez un État et une année pour afficher son profil comportemental.
+    </span>
+  </div>
+
+  <section class="chart-container">
+    <div id="radar"></div>
+
+    <p class="state-comment" id="radarComment">
+      Le radar représente quatre indicateurs exprimés en pourcentage&nbsp;:
+    </p>
+    <ul class="state-comment">
+      <li><strong>Obésité</strong> (part d’adultes en situation d’IMC ≥ 30),</li>
+      <li><strong>Fruits &lt; 1 fois/jour</strong>,</li>
+      <li><strong>Légumes &lt; 1 fois/jour</strong>,</li>
+      <li><strong>Aucune activité de loisir</strong>.</li>
+    </ul>
+    <p class="state-comment">
+      Ces informations proviennent du système de surveillance BRFSS, qui interroge chaque année
+      des milliers d’adultes sur leurs comportements de santé. Pour chaque État et chaque année,
+      le jeu de données contient la part d’adultes déclarant ces comportements.
+    </p>
+    <p class="state-comment">
+      Tous les axes du radar sont sur la même échelle (0–60&nbsp;%). Un axe qui s’étend vers
+      l’extérieur indique un <strong>comportement défavorable</strong> (par exemple : beaucoup
+      de personnes inactives ou très peu de consommation de fruits). Un polygone très “gonflé”
+      signale donc un État globalement à risque sur plusieurs dimensions, alors qu’un profil
+      plus resserré correspond à des comportements plus protecteurs.
+    </p>
+
+    <h3>Pourquoi un diagramme radar&nbsp;?</h3>
+    <p class="state-comment">
+      Le jeu de données ne fournit pas seulement un taux d’obésité, mais aussi plusieurs
+      <strong>indicateurs comportementaux</strong> directement liés au risque de surpoids
+      (alimentation, activité). Le radar est particulièrement adapté pour représenter
+      plusieurs dimensions simultanément et comparer leur niveau relatif. Il permet de
+      passer d’une vision “un indicateur = un graphique” à une représentation
+      <strong>multivariée</strong> du profil de santé d’un État.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 – Projet universitaire de visualisation de données</p>
+</footer>
+
+<script src="../js/activity.js"></script>
+</body>
+</html>
