@@ -138,14 +138,6 @@ Obesity_viz/
 ✅ **Accessible** : Navigation claire et intuitive  
 ✅ **Documentation intégrée** : Explications pédagogiques sur chaque page  
 
-## 👥 Équipe projet
-
-- El Mehdi Sassi
-- Mohamed Glim
-- Enzo Laino
-- Jeremy Kayser
-- Charafeddine Achir
-
 **Contexte** : Projet universitaire de visualisation de données - 2025
 
 ## 📝 Justification des choix de visualisation
